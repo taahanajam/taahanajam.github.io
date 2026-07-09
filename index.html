@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taaha Najam · Finance × Information Systems</title>
+<meta name="description" content="Taaha Najam is a Finance and Information Systems Management student at Wayne State University. Notes on strategy, systems, and how businesses actually work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,380..640;1,9..144,380..640&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f4ef;
+    --paper-raised: #fbfaf5;
+    --ink: #14181f;
+    --ink-soft: #4c545f;
+    --green: #1e5f4f;
+    --green-soft: #e4ece7;
+    --rule: #dcd7cc;
+    --max-prose: 40rem;
+    --max-wide: 58rem;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--green); color: var(--paper); }
+
+  a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+
+  :focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(246, 244, 239, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .header-inner {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .wordmark {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 560;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .wordmark:hover { color: var(--green); }
+  nav { display: flex; gap: 1.4rem; }
+  nav a {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 0.2rem 0;
+  }
+  nav a:hover { color: var(--green); }
+
+  /* ---------- Layout & margin rule ---------- */
+  main { position: relative; }
+
+  .page {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  section { padding: 4.5rem 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+
+  /* Notebook margin: eyebrow row with a green tick, like a ruled ledger heading */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.2rem;
+  }
+  .section-head::before {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: var(--green);
+    flex: none;
+  }
+  .section-head .mono { color: var(--green); font-weight: 500; }
+
+  h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 560;
+    font-variation-settings: "opsz" 72;
+    font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+    line-height: 1.2;
+    margin-bottom: 1.4rem;
+    letter-spacing: -0.01em;
+  }
+  h2 em { font-style: italic; font-weight: 500; }
+
+  .prose { max-width: var(--max-prose); }
+  .prose p { margin-bottom: 1.15rem; color: var(--ink); }
+  .prose p:last-child { margin-bottom: 0; }
+  .placeholder { background: var(--green-soft); border-radius: 3px; padding: 0 0.2em; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 6rem 0 5rem; }
+  .hero .eyebrow {
+    color: var(--green);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1.6rem;
+  }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-variation-settings: "opsz" 120;
+    font-size: clamp(2.2rem, 5.4vw, 3.55rem);
+    line-height: 1.12;
+    letter-spacing: -0.022em;
+    max-width: 44rem;
+    margin-bottom: 1.9rem;
+  }
+  h1 em { font-style: italic; font-weight: 500; color: var(--green); }
+  .hero-row {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    margin-bottom: 2.4rem;
+  }
+  .hero-intro {
+    max-width: 32rem;
+    color: var(--ink-soft);
+  }
+  .hero-photo {
+    flex: none;
+    width: 18.5rem;
+    height: auto;
+    aspect-ratio: 5 / 6;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid var(--rule);
+    box-shadow: 0 12px 28px -18px rgba(20, 24, 31, 0.35);
+  }
+  @media (max-width: 900px) {
+    .hero-photo { width: 14rem; }
+  }
+  @media (max-width: 640px) {
+    .hero-row { flex-direction: column-reverse; align-items: flex-start; gap: 1.6rem; }
+    .hero-photo { width: 11rem; }
+  }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .btn {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.75rem 1.3rem;
+    border-radius: 3px;
+    transition: background-color 140ms ease, color 140ms ease;
+  }
+  .btn-solid { background: var(--green); color: var(--paper); }
+  .btn-solid:hover { background: #174a3e; }
+  .btn:active { transform: translateY(1px); }
+  .btn-ghost { color: var(--green); border: 1px solid var(--green); background: transparent; }
+  .btn-ghost:hover { background: var(--green-soft); }
+
+  /* ---------- Writing index (the ledger) ---------- */
+  .post-list { list-style: none; border-top: 1px solid var(--rule); }
+  .post-row { border-bottom: 1px solid var(--rule); }
+  .post-link {
+    display: grid;
+    grid-template-columns: 2.75rem 10rem 1fr;
+    gap: 1.5rem;
+    padding: 1.6rem 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: background-color 160ms ease;
+  }
+  /* Ledger margin: a ruled gutter separating entry number from the entry */
+  .post-link::before {
+    content: "";
+    position: absolute;
+    left: 3.6rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--rule);
+  }
+  .post-num {
+    color: var(--rule);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding-top: 0.35rem;
+    font-variant-numeric: tabular-nums;
+    transition: color 160ms ease;
+  }
+  .post-link:hover .post-num { color: var(--green); }
+  .post-link:hover { background: var(--paper-raised); }
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-top: 0.3rem;
+  }
+  .post-date { color: var(--ink-soft); }
+  .post-tag { color: var(--green); font-weight: 500; }
+  .post-title {
+    font-family: "Fraunces", serif;
+    font-weight: 560;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+  .post-link:hover .post-title { color: var(--green); }
+  .post-teaser { color: var(--ink-soft); font-size: 0.97rem; max-width: 36rem; }
+  .post-arrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--green);
+    margin-top: 0.6rem;
+    display: inline-block;
+    transition: transform 160ms ease;
+  }
+  .post-link:hover .post-arrow { transform: translateX(4px); }
+
+  /* ---------- Project cards ---------- */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 2.4rem;
+  }
+  .proj-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-top: 2px solid var(--green);
+    border-radius: 6px;
+    padding: 1.6rem 1.5rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+  .proj-card:hover {
+    box-shadow: 0 14px 30px -22px rgba(20, 24, 31, 0.4);
+    transform: translateY(-2px);
+  }
+  .proj-tag { color: var(--ink-soft); display: block; margin-bottom: 0.9rem; }
+  .proj-title {
+    font-family: "Fraunces", serif;
+    font-weight: 560;
+    font-size: 1.45rem;
+    line-height: 1.25;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .proj-desc { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.6; flex: 1 1 auto; }
+  .proj-link {
+    color: var(--green);
+    text-decoration: none;
+    margin-top: 1.1rem;
+    align-self: flex-start;
+  }
+  .proj-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 900px) {
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+
+
+  /* ---------- Contact ---------- */
+  .contact-links { list-style: none; margin-top: 1.8rem; max-width: var(--max-prose); }
+  .contact-links li {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .contact-links li:last-child { border-bottom: none; }
+  .contact-links .mono { color: var(--ink-soft); }
+
+  /* ---------- Post detail pages ---------- */
+  .post-page { display: none; }
+  .post-page.active { display: block; }
+  .home-view.hidden { display: none; }
+  .post-page article { padding: 4rem 0 5rem; max-width: var(--max-prose); }
+  .back-link {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--green);
+    display: inline-block;
+    margin-bottom: 2.4rem;
+  }
+  .post-page h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 0.9rem 0 0.6rem; }
+  .post-page .post-meta-line { display: flex; gap: 1.2rem; }
+  .post-page .post-body { margin-top: 2.4rem; }
+  .post-page .post-body p { font-size: 1.09rem; line-height: 1.72; margin-bottom: 1.35rem; }
+  .post-figure { margin: 0 0 1.6rem; }
+  .post-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    display: block;
+  }
+
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--rule); }
+  .footer-inner {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 1.6rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 480ms ease, transform 480ms ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .btn, .post-link, .proj-card, .post-arrow, .post-num { transition: none; }
+    .proj-card:hover { transform: none; }
+    .post-link:hover .post-arrow { transform: none; }
+    .btn:active { transform: none; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 640px) {
+    .hero { padding: 4rem 0 3.5rem; }
+    section { padding: 3.2rem 0; }
+    .post-link { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.3rem 0.25rem; }
+    .post-link::before { display: none; }
+    .post-num { display: none; }
+    .post-meta { flex-direction: row; gap: 1rem; padding-top: 0; }
+          .contact-links li { grid-template-columns: 1fr; gap: 0.1rem; }
+    nav { gap: 1rem; }
+    nav a:nth-child(3) { display: none; } /* trim nav on small screens */
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="wordmark" href="#home" data-home>Taaha Najam</a>
+    <nav aria-label="Site">
+      <a href="#now" data-home>Now</a>
+      <a href="#about" data-home>About</a>
+      <a href="#writing" data-home>Writing</a>
+      <a href="#contact" data-home>Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- =============== HOME VIEW =============== -->
+  <div class="home-view page" id="home-view">
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <span class="eyebrow mono">Detroit, MI</span>
+      <h1 class="reveal">I like taking a messy business question and turning it into <em>something you can act on.</em></h1>
+      <div class="hero-row reveal">
+        <p class="hero-intro">I'm Taaha, a finance and information systems student at Wayne State's Mike Ilitch School of Business, with a computer science minor. This site is the part of me that doesn't fit on a resume: how I think, what I'm building, and what I write when a problem won't leave me alone.</p>
+        <img class="hero-photo" src="taaha.jpg" alt="Taaha Najam hiking near Mount Rainier" width="220" height="264">
+      </div>
+      <div class="btn-row reveal">
+        <a class="btn btn-solid" href="#writing" data-home>Read my writing</a>
+        <a class="btn btn-ghost" href="#contact" data-home>Get in touch</a>
+      </div>
+    </section>
+
+    <!-- Now / Building -->
+    <section id="now">
+      <div class="section-head reveal"><span class="mono">Now / Building</span></div>
+      <h2 class="reveal">What I'm <em>building</em> right now.</h2>
+      <p class="prose reveal" style="margin-bottom: 2.4rem; color: var(--ink-soft);">Selected work, current and recent. Each one taught me something the classroom couldn't.</p>
+
+      <div class="proj-grid reveal">
+        <article class="proj-card">
+          <span class="mono proj-tag">iOS App · Marketplace</span>
+          <h3 class="proj-title">Mehfil</h3>
+          <p class="proj-desc">A marketplace app for desi apparel, built the way Depop works: sellers list pieces, buyers browse and buy. I wanted a dedicated home for South Asian clothing instead of watching it get lost in general resale feeds. Handles listings, browsing, and the buy flow end to end.</p>
+          <!-- EDIT: point this at the Mehfil repo once it is public -->
+          <a class="proj-link mono" href="https://github.com/taahanajam" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+        <article class="proj-card">
+          <span class="mono proj-tag">Web App · Data</span>
+          <h3 class="proj-title">AstheticPrice</h3>
+          <p class="proj-desc">Enter a zip code, pick a cosmetic procedure, and see clinics and prices near you, pulled from live Google API data. It also explains the procedures themselves. Users can request a consult through the site, which is the seed of a lead-generation model with the clinics. That revenue piece is a work in progress.</p>
+          <!-- EDIT: point this at the AstheticPrice repo once it is public -->
+          <a class="proj-link mono" href="https://github.com/taahanajam" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+        <article class="proj-card">
+          <span class="mono proj-tag">Finance · HBS Case</span>
+          <h3 class="proj-title">New Heritage Doll: Capital Budgeting</h3>
+          <p class="proj-desc">Evaluated two growth investments for a doll company, one a quick line extension, one a bigger platform bet, running full DCF, NPV, IRR, and payback on each. Read the deck to find out my recommendation and reasoning.</p>
+          <!-- EDIT: put new-heritage-deck.pdf in the same folder as index.html. Strip HBS case exhibits first. -->
+          <a class="proj-link mono" href="new-heritage-deck.pdf" target="_blank" rel="noopener">Read the deck →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-head reveal"><span class="mono">About</span></div>
+      <h2 class="reveal">The <em>longer</em> version.</h2>
+      <div class="prose reveal">
+        <p>I study finance and information systems because I never found the line between them convincing. A financial model is a piece of software. A database schema is a set of opinions about what a business believes matters. When I look at a company, I see both at once: the numbers, and the system that produces the numbers. Most interesting problems live in the gap between the two.</p>
+        <p>I've spent time inside big companies and small teams: a summer on go-to-market strategy at Amazon, a year in product at a cybersecurity nonprofit, a summer in sales operations at a global auto supplier, and ongoing consulting and venture work through Wayne State. The pattern holds everywhere. The analysis is rarely the hard part. The hard part is figuring out which question actually matters. At Amazon, I interviewed people across thirteen partner teams before touching a dataset, because the real bottleneck lived in how teams talked to each other, not in any single dashboard.</p>
+        <p>A good problem, to me, has three properties. It's measurable, so I can tell whether I'm wrong. It's connected to something real, a price, a process, a person's job. And it's slightly too big for what I currently know, so finishing it changes me a little. The clearest one I've worked on: quantifying what Detroit's airport is actually worth to the region, then defending that number in front of people who could act on it.</p>
+        <p>After graduation in December 2026, I see myself in strategy and product roles. Roles where the work sits close to real decisions. If any of this sounds like a person you'd want on a problem, the contact section is short on purpose.</p>
+      </div>
+    </section>
+
+    <!-- Writing -->
+    <section id="writing">
+      <div class="section-head reveal"><span class="mono">Writing / Notes</span></div>
+      <h2 class="reveal">Notes from the <em>encephalon.</em></h2>
+      <p class="prose reveal" style="margin-bottom: 2.2rem; color: var(--ink-soft);">Short pieces on strategy, economics, and whatever else piques my curiosity.</p>
+
+      <ul class="post-list reveal">
+        <li class="post-row">
+          <a class="post-link" href="#post-1">
+            <span class="post-num mono" aria-hidden="true">01</span>
+            <div class="post-meta">
+              <span class="post-date mono">Aug 22, 2026</span>
+              <span class="post-tag mono">Big Tech</span>
+            </div>
+            <div>
+              <h3 class="post-title">South Lake Union, and what I got wrong about big tech</h3>
+              <p class="post-teaser">I spent a summer on go-to-market strategy at Amazon in Seattle. The work taught me one thing and the neighborhood taught me another, and I am still not sure which mattered more.</p>
+              <span class="post-arrow">Read →</span>
+            </div>
+          </a>
+        </li>
+        <li class="post-row">
+          <a class="post-link" href="#post-2">
+            <span class="post-num mono" aria-hidden="true">02</span>
+            <div class="post-meta">
+              <span class="post-date mono">Jun 14, 2026</span>
+              <span class="post-tag mono">Competition</span>
+            </div>
+            <div>
+              <h3 class="post-title">What DECA Nationals taught me about performing under a clock</h3>
+              <p class="post-teaser">I made finalist in Retail Management at Collegiate DECA Nationals in San Francisco. The competition rewarded something I did not expect, and it changed how I prepare for any room where I have ten minutes to be convincing.</p>
+              <span class="post-arrow">Read →</span>
+            </div>
+          </a>
+        </li>
+        <li class="post-row">
+          <a class="post-link" href="#post-3">
+            <span class="post-num mono" aria-hidden="true">03</span>
+            <div class="post-meta">
+              <span class="post-date mono">Mar 21, 2026</span>
+              <span class="post-tag mono">Economics</span>
+            </div>
+            <div>
+              <h3 class="post-title">Notes from China, and what a socialist market economy actually looks like</h3>
+              <p class="post-teaser">I went expecting the textbook version and found something harder to categorize. On the gap between how an economy is described and how it is experienced from the street.</p>
+              <span class="post-arrow">Read →</span>
+            </div>
+          </a>
+        </li>
+        <li class="post-row">
+          <a class="post-link" href="#post-4">
+            <span class="post-num mono" aria-hidden="true">04</span>
+            <div class="post-meta">
+              <span class="post-date mono">Feb 08, 2026</span>
+              <span class="post-tag mono">Product</span>
+            </div>
+            <div>
+              <h3 class="post-title">Third places do not scale, and that is the product problem</h3>
+              <p class="post-teaser">Coffee shops, barbershops, and libraries work because they are specific to a neighborhood. Every attempt to scale them nationally strips out the thing that made them work. A product take on building for belonging.</p>
+              <span class="post-arrow">Read →</span>
+            </div>
+          </a>
+        </li>
+        <li class="post-row">
+          <a class="post-link" href="#post-5">
+            <span class="post-num mono" aria-hidden="true">05</span>
+            <div class="post-meta">
+              <span class="post-date mono">Jan 12, 2026</span>
+              <span class="post-tag mono">Strategy</span>
+            </div>
+            <div>
+              <h3 class="post-title">The high speed rail question nobody asks</h3>
+              <p class="post-teaser">Most American rail debates argue about whether trains can beat planes on price. The more interesting strategic question is which markets get quietly reshaped when a corridor opens, and who loses without ever being in the conversation.</p>
+              <span class="post-arrow">Read →</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-head reveal"><span class="mono">Contact</span></div>
+      <h2 class="reveal">Say <em>hello.</em></h2>
+      <p class="prose reveal" style="color: var(--ink-soft);">I like talking about strategy, data, Detroit, and problems that don't have a clean answer yet. If something here resonated, or you just want to compare notes, my inbox is open.</p>
+      <ul class="contact-links reveal">
+        <li><span class="mono">Email</span><a href="mailto:tnajam01@gmail.com">tnajam01@gmail.com</a></li>
+        <li><span class="mono">LinkedIn</span><a href="https://linkedin.com/in/taahanajam" target="_blank" rel="noopener">linkedin.com/in/taahanajam</a></li>
+        <li><span class="mono">GitHub</span><a href="https://github.com/taahanajam" target="_blank" rel="noopener">github.com/taahanajam</a></li>
+        <!-- resume.pdf must sit in the SAME folder as index.html, named exactly "resume.pdf" -->
+        <li><span class="mono">Resume</span><a href="resume.pdf" download="Taaha-Najam-Resume.pdf" target="_blank" rel="noopener">Download PDF</a></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!-- =============== POST DETAIL PAGES =============== -->
+  <div class="post-page page" id="post-1">
+    <article>
+      <a class="back-link" href="#writing" data-home>← Back to writing</a>
+      <div class="post-meta-line"><span class="mono" style="color: var(--ink-soft);">Aug 22, 2026</span><span class="mono" style="color: var(--green); font-weight: 500;">Big Tech</span></div>
+      <h2>South Lake Union, and what I got wrong about big tech</h2>
+      <div class="prose post-body">
+        <figure class="post-figure">
+          <img src="post-amazon.jpg" alt="My Amazon badge from the summer in Seattle" loading="lazy">
+        </figure>
+        <p>I spent a summer as a go-to-market strategy intern at Amazon, in the South Lake Union offices in Seattle. I went in with a picture of what big tech was, assembled from other people's stories, and most of that picture turned out to be about the wrong things.</p>
+        <p>Starting with the neighborhood, because it shapes more than it should. South Lake Union is a company town wearing a city's clothes. The buildings are Amazon's, the lunch spots are full of Amazon badges, the conversation two tables over is about a launch you are not read into. It is efficient in a way that is genuinely impressive and slightly airless. You can go a full day without talking to someone who does not work there. I found the density energizing for about six weeks and then started deliberately walking further for coffee.</p>
+        <p>The culture surprised me most. I expected either the ruthless caricature or the sanitized recruiting version, and it was neither. What I found was a place organized almost entirely around writing. Meetings open in silence while everyone reads a document. Your idea has to survive on the page before anyone will discuss it out loud. That mechanism does something quietly radical: it decouples a good argument from a confident presenter. I have sat in rooms where the most junior person in the meeting won, because their document was better. That is rarer than it should be.</p>
+        <p>The flip side is that everything is slower to start and the writing itself becomes a skill you are evaluated on whether or not that was ever the job description. I spent more time on structure and precision than on analysis, and I do not think that was wasted.</p>
+        <p>My actual work was strategy for how teams take products to market. The specific thing I learned had nothing to do with tooling. I interviewed people across thirteen partner teams before I touched a dataset, and the bottleneck was never inside any one team. It lived in the handoffs. Work would leave one team in good shape and arrive at the next without the context that made it legible, and a surprising amount of it simply got lost in transition. Nobody dropped the ball on purpose. The seams between teams were where accountability quietly went missing, and no single team could see the pattern because each of them only saw their own edge of it.</p>
+        <p>The people were the part I did not expect to think about six months later. Big tech attracts a specific kind of person: very smart, very deliberate about their career, and often somewhat lonely in a way nobody names. Almost everyone I met had moved to Seattle for this job. That produces a workplace where colleagues are also your social life, which is convenient and a little fragile. I liked the people enormously. I also noticed how much of the culture assumed the company was the center of your life, and how easy it would be to let that be true.</p>
+        <p>I would go back. But I came away thinking the interesting question about big tech is not whether the work is hard or the pay is good. It is whether the environment makes you better at thinking, and whether you can accept the terms it asks for in return.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="post-page page" id="post-2">
+    <article>
+      <a class="back-link" href="#writing" data-home>← Back to writing</a>
+      <div class="post-meta-line"><span class="mono" style="color: var(--ink-soft);">Jun 14, 2026</span><span class="mono" style="color: var(--green); font-weight: 500;">Competition</span></div>
+      <h2>What DECA Nationals taught me about performing under a clock</h2>
+      <div class="prose post-body">
+        <figure class="post-figure">
+          <img src="post-deca.jpg" alt="Our team at Collegiate DECA Nationals in San Francisco" loading="lazy">
+        </figure>
+        <p>I competed in Retail Management at Collegiate DECA Nationals in San Francisco and made it to the finalist round. Going in, I thought the event rewarded preparation. You study the industry, you learn the frameworks, you walk in ready. That is partly true and mostly wrong.</p>
+        <p>The format gives you a business scenario and a short window to prepare a recommendation, then you present to a judge who has heard the same case a dozen times that morning. Preparation gets you to the room. What separates the people who advance is something narrower: the ability to commit to a position quickly, defend it under questioning, and change it gracefully when the judge lands a real hit.</p>
+        <p>My instinct was to hedge. Present every option, show I had considered everything, let the judge see the breadth of my thinking. That reads as thorough on paper and as indecisive in person.</p>
+        <p>What I carry from it is a habit rather than a framework. Before I present anything now, I force myself to write one sentence: the thing I am recommending, and the single reason it beats the alternative. If I cannot write that sentence, I am not ready, no matter how much analysis sits behind me.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="post-page page" id="post-3">
+    <article>
+      <a class="back-link" href="#writing" data-home>← Back to writing</a>
+      <div class="post-meta-line"><span class="mono" style="color: var(--ink-soft);">Mar 21, 2026</span><span class="mono" style="color: var(--green); font-weight: 500;">Economics</span></div>
+      <h2>Notes from China, and what a socialist market economy actually looks like</h2>
+      <div class="prose post-body">
+        <figure class="post-figure">
+          <img src="post-china.jpg" alt="Looking out over a city skyline at night in China" loading="lazy">
+        </figure>
+        <p>I studied the phrase socialist market economy before I ever went to China. It is one of those terms that sounds like a contradiction resolved by a footnote. The footnote, roughly, is that the state holds commanding heights in strategic sectors while markets allocate most everything else. That is accurate and it explains almost nothing about what the place feels like.</p>
+        <p>What struck me was how little of daily commerce felt centrally planned and how much of it felt more competitive than what I know at home. The intensity of small business competition sat right next to infrastructure that only a state with a very long time horizon builds.</p>
+        <p>The reconciliation, as best I can put it: the state is not managing prices, it is managing the direction of capital. Which sectors get credit, which get land, which get permission to scale. Firms compete ferociously inside lanes that someone else drew. That is a meaningfully different animal from either a planned economy or an American one, and calling it a hybrid undersells how coherent it is on its own terms.</p>
+        <p>I want to be careful here. I spent 18 days in 6 cities, which qualifies me to describe what I saw and not much more. Plenty of people with far more time on the ground disagree with each other about what it adds up to. The debate about whether this model is durable, whether the growth is real, and what it costs people who live inside it is genuinely unsettled, and I am not going to pretend a trip resolved it.</p>
+        <p>What the trip did give me is a habit of distrusting the label. I had a category in my head, and the country did not fit inside it. That is usually a sign the category was doing work it should not have been doing.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="post-page page" id="post-4">
+    <article>
+      <a class="back-link" href="#writing" data-home>← Back to writing</a>
+      <div class="post-meta-line"><span class="mono" style="color: var(--ink-soft);">Feb 08, 2026</span><span class="mono" style="color: var(--green); font-weight: 500;">Product</span></div>
+      <h2>Third places do not scale, and that is the product problem</h2>
+      <div class="prose post-body">
+        <figure class="post-figure">
+          <img src="post-thirdplace.jpg" alt="An illustration of a neighborhood coffee shop" loading="lazy">
+        </figure>
+        <p>A third place is where you go that is not home and not work. The coffee shop where the barista knows your order. The barbershop where the conversation is the point. The library, the park bench, the corner of a gym. Ray Oldenburg named the category decades ago and the internet rediscovers it every few years, usually while lamenting that we have fewer of them.</p>
+        <p>Here is the product problem. The properties that make a third place valuable are precisely the ones that resist scaling. It works because it is specific to a neighborhood, because the regulars recognize each other, because the owner made an idiosyncratic choice about the music. Every operator who tries to reproduce that nationally standardizes exactly those variables, because standardization is what makes an operation scalable. The result is a place that looks like a third place and functions like a retail transaction.</p>
+        <p>Starbucks is the honest case study. It was explicitly built on the third place idea and it succeeded enormously as a business by, over time, optimizing away most of what made it one. That is not a failure of execution. It is what happens when you apply scale logic to a thing whose value is local.</p>
+        <p>So if I were building in this space, I would stop trying to scale the place and start trying to scale the conditions. The product is not a chain of venues. The product is whatever lowers the cost for a thousand different local operators to run their own idiosyncratic version. Tools, not templates.</p>
+        <p>The hard part, and I do not have a clean answer, is that this business model is much less attractive than owning the venues. You capture a sliver of value from something that only works if you refuse to control it. That tension is the whole problem, and I suspect it is why the space stays underbuilt.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="post-page page" id="post-5">
+    <article>
+      <a class="back-link" href="#writing" data-home>← Back to writing</a>
+      <div class="post-meta-line"><span class="mono" style="color: var(--ink-soft);">Jan 12, 2026</span><span class="mono" style="color: var(--green); font-weight: 500;">Strategy</span></div>
+      <h2>The high speed rail question nobody asks</h2>
+      <div class="prose post-body">
+        <figure class="post-figure">
+          <img src="post-rail.jpg" alt="An illustration of a high speed bullet train" loading="lazy">
+        </figure>
+        <p>Every American high speed rail debate collapses into the same argument. Can a train beat a plane on price and time between two cities. It is a reasonable question and a small one. If you approach rail as a strategist rather than an engineer, the interesting question is different: which markets get reshaped by a corridor, and who is affected without ever appearing in the feasibility study.</p>
+        <p>Start with the obvious losers. Short haul aviation on a corridor route sees its economics gutted. But the second order effects are where the value and the political resistance actually live. Regional airports lose connecting traffic. Hotel demand shifts from overnight to day trip, which changes what kind of hotel is worth building. Office real estate in the smaller of the two cities becomes viable for firms that could not previously justify a satellite presence.</p>
+        <p>That last one is the underrated piece. A corridor does not just move people faster. It redraws the boundary of a labor market. A city ninety minutes from a major hub is a commuter town. A city three hours away is a different economy. Move the travel time across that threshold and you have changed which employers can hire there, which changes housing, which changes everything downstream.</p>
+        <p>So the strategic case for rail in the United States is rarely made well, because it is made on the wrong terms. Arguing ticket price against airfare concedes the frame. The stronger case is that a corridor is a market integration project that happens to use trains.</p>
+        <p>The counterargument deserves honesty. These second order benefits are diffuse, slow, and hard to attribute, which makes them nearly impossible to underwrite. That is the real obstacle. Not physics, not demand, but the fact that the value shows up on nobody's balance sheet in particular.</p>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner mono" style="text-transform: none; letter-spacing: 0.02em;">
+    <span>© 2026 Taaha Najam · Detroit, MI</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var postIds = ["post-1", "post-2", "post-3", "post-4", "post-5"];
+  var homeView = document.getElementById("home-view");
+
+  function route() {
+    var hash = window.location.hash.replace("#", "");
+    var isPost = postIds.indexOf(hash) !== -1;
+
+    postIds.forEach(function (id) {
+      document.getElementById(id).classList.toggle("active", id === hash);
+    });
+    homeView.classList.toggle("hidden", isPost);
+
+    if (isPost) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    } else if (hash) {
+      // The target may have been hidden when the browser tried to jump to it,
+      // so scroll to it manually after the home view is shown again.
+      var target = document.getElementById(hash);
+      if (target && target !== homeView) {
+        requestAnimationFrame(function () { target.scrollIntoView(); });
+      }
+    }
+  }
+
+  window.addEventListener("hashchange", route);
+  route();
+
+  // Smooth-scroll to home anchors even when returning from a post page
+  document.querySelectorAll("[data-home]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      // route() runs on hashchange; nothing else needed, but if the hash
+      // is unchanged (e.g. clicking the current section link), re-run it.
+      setTimeout(route, 0);
+    });
+  });
+
+  // Scroll reveal, disabled when the user prefers reduced motion
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals = document.querySelectorAll(".reveal");
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { observer.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>
