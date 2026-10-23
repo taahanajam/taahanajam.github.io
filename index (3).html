@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taaha Najam</title>
+<meta name="description" content="Taaha Najam. Finance and information systems at Wayne State. Building Mehfil and AstheticPrice. Writing on strategy, economics, and whatever else piques my curiosity.">
+<meta property="og:title" content="Taaha Najam">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%231e5f4f'/><text x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='21' fill='%23f6f4ef' text-anchor='middle'>t</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..600;1,400..600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f4ef;
+    --ink: #14181f;
+    --ink-soft: #5a616b;
+    --green: #1e5f4f;
+    --green-soft: #e3ebe5;
+    --rule: #dcd7cc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 1.18rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--green); color: var(--paper); }
+  a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 2px; }
+  .num { color: var(--green); font-weight: 600; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  .wrap { max-width: 52rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ---------- top ---------- */
+  .top { display: flex; justify-content: space-between; align-items: baseline; padding-top: 2rem; }
+  .name { font-style: italic; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+  .name:hover { color: var(--green); }
+  .top nav { display: flex; gap: 1.3rem; }
+  .top nav a { color: var(--ink-soft); text-decoration: none; }
+  .top nav a:hover { color: var(--green); }
+
+  /* ---------- intro ---------- */
+  .intro { display: flex; gap: 2.75rem; align-items: flex-start; padding: 4.5rem 0 3.5rem; }
+  .intro-left { flex: none; width: 230px; }
+  .portrait {
+    width: 230px; height: 276px; object-fit: cover; display: block; border-radius: 3px;
+    box-shadow: 0 14px 30px -20px rgba(20,24,31,0.45);
+  }
+  .intro-left h1 { font-weight: 400; font-size: 1.12rem; line-height: 1.5; margin-top: 1rem; }
+  .intro-left h1 em { color: var(--green); }
+  .intro-right { flex: 1; min-width: 0; }
+  .intro-right > * + * { margin-top: 1.15rem; }
+  .icons { display: flex; gap: 1.1rem; }
+  .icons a { display: inline-flex; color: var(--ink); text-decoration: none; padding: 2px; }
+  .icons a:hover { color: var(--green); }
+
+  /* ---------- photo strip ---------- */
+  .strip { overflow: hidden; padding: 0.5rem 0 1rem; }
+  .track { display: flex; gap: 6px; width: max-content; animation: slide 70s linear infinite; }
+  .strip:hover .track { animation-play-state: paused; }
+  .tile { width: clamp(70px, 10vw, 112px); height: clamp(70px, 10vw, 112px); flex: none; overflow: hidden; border-radius: 3px; }
+  .tile img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) sepia(0.35); transition: filter 300ms ease; }
+  .tile:hover img { filter: none; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 3px)); } }
+
+  /* ---------- sections ---------- */
+  section { padding: 2.5rem 0; }
+  .label { font-style: italic; color: var(--ink-soft); font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .label b { font-weight: 500; color: var(--ink); font-style: italic; }
+
+  .entry { border-bottom: 1px solid var(--rule); }
+  .entry summary {
+    list-style: none; cursor: pointer; display: grid;
+    grid-template-columns: 1.4rem 9.5rem 1fr; gap: 0.5rem; align-items: baseline;
+    padding: 0.8rem 0;
+  }
+  .entry summary::-webkit-details-marker { display: none; }
+  .entry summary::before {
+    content: "+"; font-family: "JetBrains Mono", monospace; color: var(--green); font-size: 0.95rem;
+    transition: transform 160ms ease; display: inline-block;
+  }
+  .entry[open] > summary::before { content: "\2212"; }
+  .entry.no-meta summary { grid-template-columns: 1.4rem 1fr; }
+  .meta { font-family: "JetBrains Mono", monospace; font-size: 0.74rem; color: var(--ink-soft); letter-spacing: 0.02em; }
+  .title { font-size: 1.18rem; }
+  .entry summary:hover .title { color: var(--green); }
+  .entry-body { padding: 0.2rem 0 1.8rem 1.9rem; max-width: 40rem; }
+  .entry-body p + p { margin-top: 1rem; }
+  .entry-img {
+    display: block; width: 100%; max-width: 440px; height: auto;
+    border-radius: 3px; margin: 0.4rem 0 1.3rem;
+  }
+
+
+  footer { padding: 2.5rem 0 3rem; color: var(--ink-soft); font-size: 1rem; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 0 1rem; }
+    .top nav { gap: 0.9rem; font-size: 1.05rem; }
+    .intro { flex-direction: column; gap: 1.6rem; padding: 2.5rem 0 2rem; }
+    .intro-left { width: 100%; display: flex; gap: 1rem; align-items: flex-start; }
+    .portrait { width: 92px; height: 110px; flex: none; }
+    .intro-left h1 { margin-top: 0; font-size: 1.08rem; }
+    .entry summary { grid-template-columns: 1.2rem 1fr; }
+    .entry summary .meta { grid-column: 2; }
+    .entry summary .title { grid-column: 2; }
+    .entry-body { padding-left: 1.7rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .track { animation: none; }
+    .tile img { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="name" href="#top">taaha najam</a>
+    <nav aria-label="Site">
+      <a href="#building">building</a>
+      <a href="#writing">writing</a>
+      <a href="#about">about</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="intro">
+      <div class="intro-left">
+        <img class="portrait" src="taaha.jpg" alt="Taaha Najam hiking near Mount Rainier">
+        <h1>I'm Taaha. Double majoring in finance and information systems at Wayne State, with a CS minor.</h1>
+      </div>
+
+      <div class="intro-right">
+        <div class="icons">
+          <a href="mailto:tnajam01@gmail.com" aria-label="Email"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></a>
+          <a href="https://linkedin.com/in/taahanajam" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+        </div>
+        <p>I like taking a messy business question and turning it into something you can act on.</p>
+        <p>Right now I'm building <a href="#mehfil">Mehfil</a>, a marketplace app for desi apparel, and <a href="#astheticprice">AstheticPrice</a>, which finds cosmetic clinics and prices near you from live Google data.</p>
+        <p>Aiming for a career in strategy and product, where the work sits close to real decisions.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="strip" aria-hidden="true"><div class="track"><div class="tile"><img src="taaha.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-china.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-deca.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-amazon.jpg" alt="" loading="lazy"></div><div class="tile"><img src="taaha.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-china.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-deca.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-amazon.jpg" alt="" loading="lazy"></div><div class="tile"><img src="taaha.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-china.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-deca.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-amazon.jpg" alt="" loading="lazy"></div><div class="tile"><img src="taaha.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-china.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-deca.jpg" alt="" loading="lazy"></div><div class="tile"><img src="post-amazon.jpg" alt="" loading="lazy"></div></div></div>
+
+<div class="wrap">
+  <section id="building">
+    <p class="label"><b>building.</b> things I've made, open one up.</p>
+      <details class="entry" id="mehfil">
+        <summary><span class="meta">ios · swift</span><span class="title">Mehfil</span></summary>
+        <div class="entry-body">
+          <p>A marketplace app for desi apparel, built the way Depop works. Sellers list pieces, buyers browse and buy. I wanted a dedicated home for South Asian clothing instead of watching it get lost in general resale feeds.</p>
+          <p><a href="mehfil-deck.pdf" target="_blank" rel="noopener noreferrer">Read the deck &rarr;</a></p>
+        </div>
+      </details>
+      <details class="entry" id="astheticprice">
+        <summary><span class="meta">web · google api</span><span class="title">AstheticPrice</span></summary>
+        <div class="entry-body">
+          <p>Enter a zip code, pick a cosmetic procedure, and see clinics and prices near you, pulled from live Google data. It also explains the procedures themselves. Users can request a consult through the site, which is the seed of a lead-generation model with the clinics.</p>
+          <p><a href="astheticprice-deck.pdf" target="_blank" rel="noopener noreferrer">Read the deck &rarr;</a></p>
+        </div>
+      </details>
+      <details class="entry" id="heritage">
+        <summary><span class="meta">finance · case</span><span class="title">New Heritage Doll</span></summary>
+        <div class="entry-body">
+          <p>Evaluated two growth investments for a doll company, one a quick line extension, one a bigger platform bet, running full DCF, NPV, IRR, and payback on each. Read the deck to find out my recommendation and reasoning.</p>
+          <p><a href="new-heritage-deck.pdf" target="_blank" rel="noopener noreferrer">Read the deck &rarr;</a></p>
+        </div>
+      </details>
+  </section>
+
+  <section id="writing">
+    <p class="label"><b>writing.</b> strategy, economics, and whatever else piques my curiosity.</p>
+      <details class="entry no-meta" id="post-1">
+        <summary><span class="title">South Lake Union, and what I got wrong about big tech</span></summary>
+        <div class="entry-body">
+          <img src="post-amazon.jpg" alt="My Amazon badge from the summer in Seattle" loading="lazy" class="entry-img">
+          <p>I spent a summer as a go-to-market strategy intern at Amazon, in the South Lake Union offices in Seattle. I went in with a picture of what big tech was, assembled from other people's stories, and most of that picture turned out to be about the wrong things.</p>
+          <p>Starting with the neighborhood, because it shapes more than it should. South Lake Union is a company town wearing a city's clothes. The buildings are Amazon's, the lunch spots are full of Amazon badges, the conversation two tables over is about a launch you are not read into. It is efficient in a way that is genuinely impressive and slightly airless. You can go a full day without talking to someone who does not work there. I found the density energizing for about six weeks and then started deliberately walking further for coffee.</p>
+          <p>The culture surprised me most. I expected either the ruthless caricature or the sanitized recruiting version, and it was neither. What I found was a place organized almost entirely around writing. Meetings open in silence while everyone reads a document. Your idea has to survive on the page before anyone will discuss it out loud. That mechanism does something quietly radical: it decouples a good argument from a confident presenter. I have sat in rooms where the most junior person in the meeting won, because their document was better. That is rarer than it should be.</p>
+          <p>The flip side is that everything is slower to start and the writing itself becomes a skill you are evaluated on whether or not that was ever the job description. I spent more time on structure and precision than on analysis, and I do not think that was wasted.</p>
+          <p>My actual work was strategy for how teams take products to market. The specific thing I learned had nothing to do with tooling. I interviewed people across thirteen partner teams before I touched a dataset, and the bottleneck was never inside any one team. It lived in the handoffs. Work would leave one team in good shape and arrive at the next without the context that made it legible, and a surprising amount of it simply got lost in transition. Nobody dropped the ball on purpose. The seams between teams were where accountability quietly went missing, and no single team could see the pattern because each of them only saw their own edge of it.</p>
+          <p>The people were the part I did not expect to think about six months later. Big tech attracts a specific kind of person: very smart, very deliberate about their career, and often somewhat lonely in a way nobody names. Almost everyone I met had moved to Seattle for this job. That produces a workplace where colleagues are also your social life, which is convenient and a little fragile. I liked the people enormously. I also noticed how much of the culture assumed the company was the center of your life, and how easy it would be to let that be true.</p>
+          <p>I would go back. But I came away thinking the interesting question about big tech is not whether the work is hard or the pay is good. It is whether the environment makes you better at thinking, and whether you can accept the terms it asks for in return.</p>
+        </div>
+      </details>
+      <details class="entry no-meta" id="post-2">
+        <summary><span class="title">What DECA Nationals taught me about performing under a clock</span></summary>
+        <div class="entry-body">
+          <img src="post-deca.jpg" alt="Our team at Collegiate DECA Nationals in San Francisco" loading="lazy" class="entry-img">
+          <p>I competed in Retail Management at Collegiate DECA Nationals in San Francisco and made it to the finalist round. Going in, I thought the event rewarded preparation. You study the industry, you learn the frameworks, you walk in ready. That is partly true and mostly wrong.</p>
+          <p>The format gives you a business scenario and a short window to prepare a recommendation, then you present to a judge who has heard the same case a dozen times that morning. Preparation gets you to the room. What separates the people who advance is something narrower: the ability to commit to a position quickly, defend it under questioning, and change it gracefully when the judge lands a real hit.</p>
+          <p>My instinct was to hedge. Present every option, show I had considered everything, let the judge see the breadth of my thinking. That reads as thorough on paper and as indecisive in person.</p>
+          <p>What I carry from it is a habit rather than a framework. Before I present anything now, I force myself to write one sentence: the thing I am recommending, and the single reason it beats the alternative. If I cannot write that sentence, I am not ready, no matter how much analysis sits behind me.</p>
+        </div>
+      </details>
+      <details class="entry no-meta" id="post-3">
+        <summary><span class="title">Notes from China, and what a socialist market economy actually looks like</span></summary>
+        <div class="entry-body">
+          <img src="post-china.jpg" alt="Looking out over a city skyline at night in China" loading="lazy" class="entry-img">
+          <p>I studied the phrase socialist market economy before I ever went to China. It is one of those terms that sounds like a contradiction resolved by a footnote. The footnote, roughly, is that the state holds commanding heights in strategic sectors while markets allocate most everything else. That is accurate and it explains almost nothing about what the place feels like.</p>
+          <p>What struck me was how little of daily commerce felt centrally planned and how much of it felt more competitive than what I know at home. The intensity of small business competition sat right next to infrastructure that only a state with a very long time horizon builds.</p>
+          <p>The reconciliation, as best I can put it: the state is not managing prices, it is managing the direction of capital. Which sectors get credit, which get land, which get permission to scale. Firms compete ferociously inside lanes that someone else drew. That is a meaningfully different animal from either a planned economy or an American one, and calling it a hybrid undersells how coherent it is on its own terms.</p>
+          <p>I want to be careful here. I spent 18 days in 6 cities, which qualifies me to describe what I saw and not much more. Plenty of people with far more time on the ground disagree with each other about what it adds up to. The debate about whether this model is durable, whether the growth is real, and what it costs people who live inside it is genuinely unsettled, and I am not going to pretend a trip resolved it.</p>
+          <p>What the trip did give me is a habit of distrusting the label. I had a category in my head, and the country did not fit inside it. That is usually a sign the category was doing work it should not have been doing.</p>
+        </div>
+      </details>
+      <details class="entry no-meta" id="post-4">
+        <summary><span class="title">Third places do not scale, and that is the product problem</span></summary>
+        <div class="entry-body">
+          <img src="post-thirdplace.jpg" alt="An illustration of a neighborhood coffee shop" loading="lazy" class="entry-img">
+          <p>A third place is where you go that is not home and not work. The coffee shop where the barista knows your order. The barbershop where the conversation is the point. The library, the park bench, the corner of a gym. Ray Oldenburg named the category decades ago and the internet rediscovers it every few years, usually while lamenting that we have fewer of them.</p>
+          <p>Here is the product problem. The properties that make a third place valuable are precisely the ones that resist scaling. It works because it is specific to a neighborhood, because the regulars recognize each other, because the owner made an idiosyncratic choice about the music. Every operator who tries to reproduce that nationally standardizes exactly those variables, because standardization is what makes an operation scalable. The result is a place that looks like a third place and functions like a retail transaction.</p>
+          <p>Starbucks is the honest case study. It was explicitly built on the third place idea and it succeeded enormously as a business by, over time, optimizing away most of what made it one. That is not a failure of execution. It is what happens when you apply scale logic to a thing whose value is local.</p>
+          <p>So if I were building in this space, I would stop trying to scale the place and start trying to scale the conditions. The product is not a chain of venues. The product is whatever lowers the cost for a thousand different local operators to run their own idiosyncratic version. Tools, not templates.</p>
+          <p>The hard part, and I do not have a clean answer, is that this business model is much less attractive than owning the venues. You capture a sliver of value from something that only works if you refuse to control it. That tension is the whole problem, and I suspect it is why the space stays underbuilt.</p>
+        </div>
+      </details>
+      <details class="entry no-meta" id="post-5">
+        <summary><span class="title">The high speed rail question nobody asks</span></summary>
+        <div class="entry-body">
+          <img src="post-rail.jpg" alt="An illustration of a high speed bullet train" loading="lazy" class="entry-img">
+          <p>Every American high speed rail debate collapses into the same argument. Can a train beat a plane on price and time between two cities. It is a reasonable question and a small one. If you approach rail as a strategist rather than an engineer, the interesting question is different: which markets get reshaped by a corridor, and who is affected without ever appearing in the feasibility study.</p>
+          <p>Start with the obvious losers. Short haul aviation on a corridor route sees its economics gutted. But the second order effects are where the value and the political resistance actually live. Regional airports lose connecting traffic. Hotel demand shifts from overnight to day trip, which changes what kind of hotel is worth building. Office real estate in the smaller of the two cities becomes viable for firms that could not previously justify a satellite presence.</p>
+          <p>That last one is the underrated piece. A corridor does not just move people faster. It redraws the boundary of a labor market. A city ninety minutes from a major hub is a commuter town. A city three hours away is a different economy. Move the travel time across that threshold and you have changed which employers can hire there, which changes housing, which changes everything downstream.</p>
+          <p>So the strategic case for rail in the United States is rarely made well, because it is made on the wrong terms. Arguing ticket price against airfare concedes the frame. The stronger case is that a corridor is a market integration project that happens to use trains.</p>
+          <p>The counterargument deserves honesty. These second order benefits are diffuse, slow, and hard to attribute, which makes them nearly impossible to underwrite. That is the real obstacle. Not physics, not demand, but the fact that the value shows up on nobody's balance sheet in particular.</p>
+        </div>
+      </details>
+  </section>
+
+  <section id="about">
+      <details class="entry" id="about-more">
+        <summary><span class="meta">about</span><span class="title">The longer version</span></summary>
+        <div class="entry-body">
+          <p>I study finance and information systems because I never found the line between them convincing. A financial model is a piece of software. A database schema is a set of opinions about what a business believes matters. When I look at a company, I see both at once: the numbers, and the system that produces the numbers. Most interesting problems live in the gap between the two.</p>
+          <p>I've spent time inside big companies and small teams: a summer on go-to-market strategy at Amazon, a year in product at a cybersecurity nonprofit, a summer in sales operations at a global auto supplier, and ongoing consulting and venture work through Wayne State. The pattern holds everywhere. The analysis is rarely the hard part. The hard part is figuring out which question actually matters. At Amazon, I interviewed people across thirteen partner teams before touching a dataset, because the real bottleneck lived in how teams talked to each other, not in any single dashboard.</p>
+          <p>A good problem, to me, has three properties. It's measurable, so I can tell whether I'm wrong. It's connected to something real, a price, a process, a person's job. And it's slightly too big for what I currently know, so finishing it changes me a little. The clearest one I've worked on: quantifying what Detroit's airport is actually worth to the region, then defending that number in front of people who could act on it.</p>
+          <p>After graduation in December 2026, I see myself in strategy and product roles. Roles where the work sits close to real decisions. If any of this sounds like a person you'd want on a problem, my inbox is open.</p>
+        </div>
+      </details>
+  </section>
+
+
+
+  <footer>&copy; 2026 Taaha Najam &middot; <a href="mailto:tnajam01@gmail.com">tnajam01@gmail.com</a></footer>
+</div>
+
+<script>
+(function () {
+  // Open a dropdown when its link is followed, e.g. taahanajam.com/#post-2 or the Mehfil link up top
+  function openFromHash() {
+    var h = location.hash.slice(1);
+    var d = h && document.getElementById(h);
+    if (d && d.tagName === 'DETAILS') { d.open = true; d.scrollIntoView({ block: 'start' }); }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+
+})();
+</script>
+
+<!-- Analytics: GoatCounter (privacy-friendly, no cookies) -->
+<script data-goatcounter="https://tnajam.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
